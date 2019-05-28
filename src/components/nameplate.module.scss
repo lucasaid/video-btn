@@ -8,8 +8,9 @@
   max-width: 30vw;
   position: relative;
   &:after {
-    animation: arrow_in $speed 0.3s $directions,
-      arrow_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) $directions;
+    animation: arrow_in $speed 0.3s ease-in $directions,
+      arrow_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out
+        $directions;
     border: solid transparent;
     border-right-color: white;
     border-width: 0.8vw;
@@ -29,8 +30,9 @@
   overflow: hidden;
   position: realtive;
   &:after {
-    animation: box_in $speed 0.3s $directions,
-      box_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) $directions;
+    animation: box_in $speed 0.3s ease-in $directions,
+      box_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out
+        $directions;
     background-color: white;
     border-radius: 0.3vw;
     border-radius: 0.3vw 5vw 5vw 0.3vw;
@@ -47,8 +49,8 @@
   }
 }
 .nameplate__text {
-  animation: text_in $speed (0.3s + $speed) $directions,
-    text_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) $directions;
+  animation: text_in $speed (0.3s + $speed) ease-in $directions,
+    text_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out $directions;
   color: $colour;
   display: block;
   min-width: 100%;

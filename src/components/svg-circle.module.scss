@@ -8,7 +8,7 @@
 $circumference: 30 * 2 * 3.14159265358979;
 
 .progress-ring__circle {
-  animation: rota $speed linear 0.2s $directions,
+  animation: rota $speed ease-in 0.2s $directions,
     hide $speed steps(1, end) $speed + 0.2s $directions;
   fill: transparent;
   stroke: $colour;
