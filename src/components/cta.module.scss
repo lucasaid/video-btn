@@ -1,0 +1,15 @@
+@import "./variables.scss";
+
+body {
+  background-color: $bg;
+}
+.element {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  left: 12vw;
+  position: absolute;
+  text-decoration: none;
+  top: 12vw;
+  z-index: 2;
+}

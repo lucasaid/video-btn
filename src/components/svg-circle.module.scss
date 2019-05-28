@@ -1,0 +1,39 @@
+@import "./variables.scss";
+.progress-ring {
+  height: 8vw * $size;
+  position: absolute;
+  width: 8vw * $size;
+}
+
+$circumference: 30 * 2 * 3.14159265358979;
+
+.progress-ring__circle {
+  animation: rota $speed linear 0.2s $directions,
+    hide $speed steps(1, end) $speed + 0.2s $directions;
+  fill: transparent;
+  stroke: $colour;
+  stroke-dasharray: $circumference $circumference;
+  stroke-dashoffset: $circumference;
+  stroke-width: 60px;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: 0.35s stroke-dashoffset;
+}
+
+@keyframes rota {
+  0% {
+    stroke-dashoffset: $circumference;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}

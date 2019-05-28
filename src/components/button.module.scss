@@ -1,0 +1,227 @@
+@import "./variables.scss";
+.button {
+  display: block;
+  height: 8vw * $size;
+  position: relative;
+  width: 8vw * $size;
+  &:after {
+    animation: pulse $speed * 2.5 ease-out 0.8s $pulses;
+    background: $colour;
+    border-radius: 50% 50%;
+    box-sizing: border-box;
+    content: "";
+    height: 100%;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 100%;
+    z-index: 0;
+  }
+}
+
+.dot {
+  animation: dotin 0.3s ease-in $directions,
+    hide $speed steps(1, end) 0.5s $directions;
+  background: $colour;
+  border-radius: 50% 50%;
+  box-sizing: border-box;
+  height: 50%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  z-index: 4;
+}
+.big_dot {
+  animation: big_dot $speed steps(1, end) 0.2s $directions,
+    end_fade_out $speed (($speed * 2.5) * $pulses + 0.4s) $directions;
+  background: $colour;
+  border-radius: 50% 50%;
+  box-sizing: border-box;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  transform-origin: center center;
+  width: 100%;
+  z-index: 4;
+}
+.content {
+  animation: content_fade $speed * 2 0.3s $directions,
+    content_pulse $speed * 5 ease-out 0.8s ($pulses / 2);
+  color: $white;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  transform: rotate(-10deg) scale(1.2);
+  transform-origin: center center;
+  width: 100%;
+  z-index: 5;
+}
+.plus {
+  animation: plus_fade_out $speed (($speed * 2.5) * round($pulses * 0.4) + 0.8s)
+      $directions,
+    plus_fade_in $speed (($speed * 2.5) * round($pulses * 0.8) + 0.8s)
+      $directions,
+    plus_fade_rotate $speed (($speed * 2.5) * $pulses + 0.2s) $directions;
+  font-family: Courier, monospace;
+  font-size: 6vw * $size;
+  left: 50%;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.tap {
+  animation: tap_fade_in $speed (($speed * 2.5) * round($pulses * 0.4) + 0.8s)
+      $directions,
+    tap_fade_out $speed (($speed * 2.5) * round($pulses * 0.8) + 0.8s)
+      $directions;
+  font-family: $fontButton;
+  font-size: 2vw * $size;
+  font-weight: bold;
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+@keyframes big_dot {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes plus_fade_rotate {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+@keyframes plus_fade_out {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+@keyframes plus_fade_in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  1% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  70% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.8);
+  }
+}
+
+@keyframes tap_fade_in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+@keyframes tap_fade_out {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+}
+@keyframes content_pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1.3);
+  }
+  90% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes content_fade {
+  0% {
+    opacity: 0;
+    transform: rotate(-10deg) scale(1.2);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+@keyframes dotin {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes end_fade_out {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}

@@ -1,0 +1,131 @@
+@import "./variables.scss";
+.nameplate {
+  font-family: $fontName;
+  font-size: 1.8vw;
+  font-weight: bold;
+  line-height: 1.8vw;
+  margin-left: 0.8vw;
+  max-width: 30vw;
+  position: relative;
+  &:after {
+    animation: arrow_in $speed 0.3s $directions,
+      arrow_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) $directions;
+    border: solid transparent;
+    border-right-color: white;
+    border-width: 0.8vw;
+    content: " ";
+    height: 0;
+    margin-top: -0.8vw;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    width: 0;
+  }
+}
+.nameplate__content {
+  display: block;
+  overflow: hidden;
+  position: realtive;
+  &:after {
+    animation: box_in $speed 0.3s $directions,
+      box_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) $directions;
+    background-color: white;
+    border-radius: 0.3vw;
+    border-radius: 0.3vw 5vw 5vw 0.3vw;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scale(0, 1);
+    transform-origin: left center;
+    width: 100%;
+    z-index: 0;
+  }
+}
+.nameplate__text {
+  animation: text_in $speed (0.3s + $speed) $directions,
+    text_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) $directions;
+  color: $colour;
+  display: block;
+  min-width: 100%;
+  opacity: 0;
+  padding: 1.5vw;
+  position: relative;
+  transform: translateY(-100%);
+  white-space: nowrap;
+  z-index: 1;
+}
+@keyframes arrow_in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@keyframes arrow_out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes box_in {
+  0% {
+    border-radius: 0.3vw 5vw 5vw 0.3vw;
+    transform: scale(0, 1);
+  }
+  80% {
+    border-radius: 0.3vw 5vw 5vw 0.3vw;
+    transform: scale(1.1, 1);
+  }
+  100% {
+    border-radius: 0.3vw;
+    transform: scale(1, 1);
+  }
+}
+@keyframes box_out {
+  0% {
+    border-radius: 0.3vw;
+    transform: scale(1, 1);
+  }
+  20% {
+    border-radius: 0.3vw 5vw 5vw 0.3vw;
+    transform: scale(1.1, 1);
+  }
+  100% {
+    border-radius: 0.3vw 5vw 5vw 0.3vw;
+    transform: scale(0, 1);
+  }
+}
+
+@keyframes text_in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes text_out {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0%);
+  }
+}
