@@ -1,4 +1,4 @@
-# HHD Gatsby Template
+# Gatsby Template
 
 `yarn` to install packages
 `yarn start` to run development server
