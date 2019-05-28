@@ -8,7 +8,7 @@ const Button = () => {
       <div className={styles.big_dot} />
       <div className={styles.dot} />
       <span className={styles.content}>
-        <span className={styles.plus}>+</span>
+        <span className={styles.plus} />
         <span className={styles.tap}>Tap</span>
       </span>
     </div>

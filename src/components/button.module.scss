@@ -66,13 +66,33 @@
     plus_fade_in $speed (($speed * 2.5) * round($pulses * 0.8) + 0.8s)
       $directions,
     plus_fade_rotate $speed (($speed * 2.5) * $pulses + 0.2s) $directions;
+  display: block;
   font-family: Courier, monospace;
   font-size: 6vw * $size;
+  height: 100%;
   left: 50%;
   opacity: 1;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%) rotate(0deg);
+  width: 100%;
+  &:before,
+  &:after {
+    background-color: white;
+    content: "";
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &:before {
+    height: 40%;
+    width: 6%;
+  }
+  &:after {
+    height: 6%;
+    width: 40%;
+  }
 }
 
 .tap {
