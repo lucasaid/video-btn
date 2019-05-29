@@ -54,7 +54,6 @@
     plus ($speed / 2) (($speed * 2.5) * round($pulses * 0.8) + 0.8s) ease-in
       forwards reverse,
     plus ($speed / 2) (($speed * 2.5) * $pulses + 0.2s) ease-out forwards;
-  display: block;
   font-family: Courier, monospace;
   font-size: 6vw * $size;
   height: 100%;

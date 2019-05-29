@@ -6,10 +6,10 @@ const Button = () => {
     <div className={styles.button}>
       <SVGCircle />
       <div className={styles.dot} />
-      <span className={styles.content}>
-        <span className={styles.plus} />
+      <div className={styles.content}>
+        <div className={styles.plus} />
         <span className={styles.tap}>Tap</span>
-      </span>
+      </div>
     </div>
   )
 }
