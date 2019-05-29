@@ -23,8 +23,8 @@
 }
 
 .dot {
-  animation: dotin 0.3s ease-in $directions,
-    hide $speed steps(1, end) 0.5s $directions;
+  animation: dotin 0.3s ease-in forwards,
+    hide_dot $speed steps(1, end) 0.5s forwards;
   background: $colour;
   border-radius: 50% 50%;
   box-sizing: border-box;
@@ -37,7 +37,7 @@
   z-index: 4;
 }
 .content {
-  animation: content_fade $speed 0.3s ease-in $directions,
+  animation: content_fade $speed 0.3s ease-in forwards,
     content_pulse $speed * 5 linear 0.8s ($pulses / 2);
   color: $white;
   height: 100%;
@@ -49,12 +49,11 @@
   z-index: 5;
 }
 .plus {
-  animation: plus_fade_out ($speed / 2)
-      (($speed * 2.5) * round($pulses * 0.4) + 0.8s) ease-out $directions,
-    plus_fade_in ($speed / 2) (($speed * 2.5) * round($pulses * 0.8) + 0.8s)
-      ease-in $directions,
-    plus_fade_rotate ($speed / 2) (($speed * 2.5) * $pulses + 0.2s) ease-out
-      $directions;
+  animation: plus ($speed / 2) (($speed * 2.5) * round($pulses * 0.4) + 0.8s)
+      ease-out forwards,
+    plus ($speed / 2) (($speed * 2.5) * round($pulses * 0.8) + 0.8s) ease-in
+      forwards reverse,
+    plus ($speed / 2) (($speed * 2.5) * $pulses + 0.2s) ease-out forwards;
   display: block;
   font-family: Courier, monospace;
   font-size: 6vw * $size;
@@ -85,10 +84,10 @@
 }
 
 .tap {
-  animation: tap_fade_in ($speed / 2)
-      (($speed * 2.5) * round($pulses * 0.4) + 0.8s) ease-in $directions,
-    tap_fade_out ($speed / 2) (($speed * 2.5) * round($pulses * 0.8) + 0.8s)
-      ease-out $directions;
+  animation: tap ($speed / 2) (($speed * 2.5) * round($pulses * 0.4) + 0.8s)
+      ease-in forwards,
+    tap ($speed / 2) (($speed * 2.5) * round($pulses * 0.8) + 0.8s) ease-out
+      forwards reverse;
   font-family: $fontButton;
   font-size: 2vw * $size;
   font-weight: bold;
@@ -99,36 +98,17 @@
   transform: translate(-50%, -50%) rotate(-90deg);
 }
 
-//
-@keyframes big_dot {
+// Animate small blue dot in
+@keyframes dotin {
   0% {
-    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
   }
   100% {
-    opacity: 1;
-  }
-}
-@keyframes plus_fade_out {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-}
-@keyframes plus_fade_in {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
+// Pulse for blue transparent background dot
 @keyframes pulse {
   0% {
     opacity: 0;
@@ -148,7 +128,20 @@
   }
 }
 
-@keyframes tap_fade_in {
+// Animate plus symbol out to bring in the tap text, also used to fade out at end
+@keyframes plus {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
+// Animate tap text
+@keyframes tap {
   0% {
     opacity: 0;
     transform: translate(-50%, -50%) rotate(-90deg);
@@ -158,16 +151,8 @@
     transform: translate(-50%, -50%) rotate(0deg);
   }
 }
-@keyframes tap_fade_out {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(-90deg);
-  }
-}
+
+// Pulse for plus and tap content
 @keyframes content_pulse {
   0% {
     transform: scale(1);
@@ -185,6 +170,8 @@
     transform: scale(1);
   }
 }
+
+// Fade out content on end
 @keyframes content_fade {
   0% {
     opacity: 0;
@@ -199,32 +186,15 @@
     transform: rotate(0deg) scale(1);
   }
 }
-@keyframes dotin {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
 
-@keyframes hide {
+// hide dot after big dot has animated in
+// so when animating out small dot is gone
+@keyframes hide_dot {
   0% {
     opacity: 1;
   }
   50%,
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes plus_fade_rotate {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(90deg);
   }
 }

@@ -8,8 +8,8 @@
 $circumference: 30 * 2 * 3.14159265358979;
 
 .progress-ring__circle {
-  animation: rota $speed ease-in 0.2s $directions,
-    end_fade_out $speed (($speed * 2.5) * $pulses + 0.4s) ease-out $directions;
+  animation: rota $speed ease-in 0.2s forwards,
+    end_fade_out $speed (($speed * 2.5) * $pulses + 0.4s) ease-out forwards;
   fill: transparent;
   stroke: $colour;
   stroke-dasharray: $circumference $circumference;
@@ -28,16 +28,6 @@ $circumference: 30 * 2 * 3.14159265358979;
     stroke-dashoffset: 0;
   }
 }
-@keyframes hide {
-  0% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes end_fade_out {
   0% {
     transform: scale(1);

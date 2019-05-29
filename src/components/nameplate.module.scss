@@ -7,10 +7,11 @@
   margin-left: 0.8vw;
   max-width: 30vw;
   position: relative;
+  // Arrow after element
   &:after {
-    animation: arrow_in $speed 0.3s ease-in $directions,
-      arrow_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out
-        $directions;
+    animation: arrow $speed 0.3s ease-in forwards,
+      arrow $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out forwards
+        reverse;
     border: solid transparent;
     border-right-color: white;
     border-width: 0.8vw;
@@ -30,9 +31,9 @@
   overflow: hidden;
   position: realtive;
   &:after {
-    animation: box_in $speed 0.3s ease-in $directions,
-      box_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out
-        $directions;
+    animation: nameplate $speed 0.3s ease-in forwards,
+      nameplate $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out forwards
+        reverse;
     background-color: white;
     border-radius: 0.3vw;
     border-radius: 0.3vw 5vw 5vw 0.3vw;
@@ -49,8 +50,8 @@
   }
 }
 .nameplate__text {
-  animation: text_in $speed (0.3s + $speed) ease-in $directions,
-    text_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out $directions;
+  animation: text_in $speed (0.3s + $speed) ease-in forwards,
+    text_out $speed (($speed * 2.5) * ($pulses - 1) + 0.4s) ease-out forwards;
   color: $colour;
   display: block;
   min-width: 100%;
@@ -61,7 +62,9 @@
   white-space: nowrap;
   z-index: 1;
 }
-@keyframes arrow_in {
+
+// Animate arrow
+@keyframes arrow {
   0% {
     opacity: 0;
     transform: translateX(100%);
@@ -69,20 +72,11 @@
   100% {
     opacity: 1;
     transform: translateX(0%);
-  }
-}
-@keyframes arrow_out {
-  0% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(100%);
   }
 }
 
-@keyframes box_in {
+// Animate white background box in
+@keyframes nameplate {
   0% {
     border-radius: 0.3vw 5vw 5vw 0.3vw;
     transform: scale(0, 1);
@@ -96,21 +90,8 @@
     transform: scale(1, 1);
   }
 }
-@keyframes box_out {
-  0% {
-    border-radius: 0.3vw;
-    transform: scale(1, 1);
-  }
-  20% {
-    border-radius: 0.3vw 5vw 5vw 0.3vw;
-    transform: scale(1.1, 1);
-  }
-  100% {
-    border-radius: 0.3vw 5vw 5vw 0.3vw;
-    transform: scale(0, 1);
-  }
-}
 
+// Animate text in
 @keyframes text_in {
   0% {
     opacity: 0;
@@ -121,6 +102,8 @@
     transform: translateY(0%);
   }
 }
+
+// Animate text out
 @keyframes text_out {
   0% {
     opacity: 1;
