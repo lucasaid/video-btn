@@ -5,7 +5,6 @@ const Button = () => {
   return (
     <div className={styles.button}>
       <SVGCircle />
-      <div className={styles.big_dot} />
       <div className={styles.dot} />
       <span className={styles.content}>
         <span className={styles.plus} />
